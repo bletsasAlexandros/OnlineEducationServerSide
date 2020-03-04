@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/OnliEdu/static/css/main.790f5234.chunk.css",
+    "main.js": "/OnliEdu/static/js/main.abfe8005.chunk.js",
+    "main.js.map": "/OnliEdu/static/js/main.abfe8005.chunk.js.map",
+    "runtime-main.js": "/OnliEdu/static/js/runtime-main.bc0136a0.js",
+    "runtime-main.js.map": "/OnliEdu/static/js/runtime-main.bc0136a0.js.map",
+    "static/css/2.1c98e06a.chunk.css": "/OnliEdu/static/css/2.1c98e06a.chunk.css",
+    "static/js/2.8dac4a67.chunk.js": "/OnliEdu/static/js/2.8dac4a67.chunk.js",
+    "static/js/2.8dac4a67.chunk.js.map": "/OnliEdu/static/js/2.8dac4a67.chunk.js.map",
+    "index.html": "/OnliEdu/index.html",
+    "precache-manifest.2fbe82095047718a72dfcdde77d2e2f4.js": "/OnliEdu/precache-manifest.2fbe82095047718a72dfcdde77d2e2f4.js",
+    "service-worker.js": "/OnliEdu/service-worker.js",
+    "static/css/2.1c98e06a.chunk.css.map": "/OnliEdu/static/css/2.1c98e06a.chunk.css.map",
+    "static/css/main.790f5234.chunk.css.map": "/OnliEdu/static/css/main.790f5234.chunk.css.map",
+    "static/js/2.8dac4a67.chunk.js.LICENSE.txt": "/OnliEdu/static/js/2.8dac4a67.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc0136a0.js",
+    "static/css/2.1c98e06a.chunk.css",
+    "static/js/2.8dac4a67.chunk.js",
+    "static/css/main.790f5234.chunk.css",
+    "static/js/main.abfe8005.chunk.js"
+  ]
+}
