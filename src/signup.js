@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  CheckBox,
-  FormCheck
-} from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./signup.css";
+
+/*The sign up form. The person that signs up has to put his personal info
+Later that will be stored in a base*/
 
 function SignUp() {
   return (
