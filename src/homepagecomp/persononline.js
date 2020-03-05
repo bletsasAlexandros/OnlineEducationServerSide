@@ -36,16 +36,16 @@ class PersonOnline extends React.Component {
           <div class="col-md-4 style1">
             <ul className="info">
               <li>
-                <Link to="/underConstruction">
-                  <a href="/underConstruction">Live Chat</a>
+                <Link to="/OnliEdu/underConstruction">
+                  <a href="/OnliEdu/underConstruction">Live Chat</a>
                 </Link>
               </li>
               <li>
-                <Link to="/underConstruction">Video Call</Link>
+                <Link to="/OnliEdu/underConstruction">Video Call</Link>
               </li>
               <li>
-                <Link to="/underConstruction">
-                  <a href="/underConstruction">Profile</a>
+                <Link to="/OnliEdu/underConstruction">
+                  <a href="/OnliEdu/underConstruction">Profile</a>
                 </Link>
               </li>
             </ul>

@@ -10,14 +10,16 @@ import underConstruction from "./homepagecomp/underConstruction";
 function App() {
   return (
     <Router>
-      {/* <Login /> */}
       <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/personOnline" component={PersonOnline} />
-        <Route path="/homepage" component={HomePage} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/underConstruction" component={underConstruction} />
+        <Route path="/OnliEdu" exact component={Login} />
+        <Route path="/OnliEdu/signup" component={SignUp} />
+        <Route path="/OnliEdu/personOnline" component={PersonOnline} />
+        <Route path="/OnliEdu/homepage" component={HomePage} />
+        <Route path="/OnliEdu/signup" component={SignUp} />
+        <Route
+          path="/OnliEdu/underConstruction"
+          component={underConstruction}
+        />
       </Switch>
     </Router>
   );

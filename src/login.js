@@ -32,7 +32,7 @@ class Login extends React.Component {
             <div className="text-center">
               {/*If the person wnat to sign up he will be redirected to
               sign up pahe*/}
-              <Link to="/signup">
+              <Link to="/OnliEdu/signup">
                 <a href="/sign-up">Sign Up</a>
               </Link>
               <span className="p-2">|</span>
