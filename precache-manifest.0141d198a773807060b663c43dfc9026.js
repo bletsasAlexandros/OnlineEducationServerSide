@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "64a63f051b20bd46b82974e359e45ed5",
+    "revision": "cbea0851a098c5a011aabac730b8a1ef",
     "url": "/OnliEdu/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/OnliEdu/static/css/2.1c98e06a.chunk.css"
   },
   {
-    "revision": "018b43ac1659a84530bb",
+    "revision": "fb909e046574af22941c",
     "url": "/OnliEdu/static/css/main.5d62ce70.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/OnliEdu/static/js/2.47de0985.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "018b43ac1659a84530bb",
-    "url": "/OnliEdu/static/js/main.966cf8cc.chunk.js"
+    "revision": "fb909e046574af22941c",
+    "url": "/OnliEdu/static/js/main.9773f91a.chunk.js"
   },
   {
     "revision": "59aa918c3df8ea866a24",

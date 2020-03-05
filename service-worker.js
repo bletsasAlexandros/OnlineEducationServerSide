@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/OnliEdu/precache-manifest.2d71d8d3c0f8904d0477e68ddbb90b81.js"
+  "/OnliEdu/precache-manifest.0141d198a773807060b663c43dfc9026.js"
 );
 
 self.addEventListener('message', (event) => {
