@@ -19,7 +19,7 @@ h3.a {
 }
 
 .container-style {
-  margin: 5px;
+  margin: 15px;
   border-style: solid;
   transition: 0.2s;
   border-color: #7a653b;
@@ -31,14 +31,14 @@ h3.a {
 }
 
 .container-style img {
-  margin: 10px;
+  margin: 8px;
   float: right;
   width: 50%;
   border-radius: 50%;
 }
 
 .container-style:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 ul {
@@ -67,4 +67,26 @@ h1.a {
   justify-content: center;
   text-align: center;
   font-weight: bold;
+}
+
+.homepage-style-main {
+  position: relative;
+  left: 45%;
+  max-width: 100vh;
+  max-width: 100vh;
+  min-width: 25vh;
+  min-height: 80vh;
+  border: solid;
+}
+
+.online-container {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.content {
+  max-height: 75vh;
+  overflow: auto;
 }

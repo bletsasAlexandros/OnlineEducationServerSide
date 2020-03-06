@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
+import { Link } from "react-router-dom";
 import "./signup.css";
 
 /*The sign up form. The person that signs up has to put his personal info
@@ -49,6 +50,7 @@ function SignUp() {
           <Button className="btn-lg btn-dark btn-block butn-color">
             Sign up
           </Button>
+          <Link to="/OnliEdu/homepage">Continue to page</Link>
           <br />
         </div>
       </Form>

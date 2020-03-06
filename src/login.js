@@ -35,8 +35,10 @@ class Login extends React.Component {
               <Link to="/OnliEdu/signup">
                 <a href="/sign-up">Sign Up</a>
               </Link>
-              <span className="p-2">|</span>
-              <a href="/sign-up">Forgot Password</a>
+              <Link to="OnliEdu/underConstruction">
+                {" "}
+                | <a>Forgot Password</a>
+              </Link>
             </div>
           </div>
         </Form>

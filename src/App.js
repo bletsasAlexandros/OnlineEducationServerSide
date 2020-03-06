@@ -18,7 +18,6 @@ function App() {
           component={PersonOnline}
         />
         <Route path="/OnliEdu/homepage" component={HomePage} />
-        <Route path="/OnliEdu/signup" component={SignUp} />
         <Route
           path="/OnliEdu/underConstruction"
           component={underConstruction}
