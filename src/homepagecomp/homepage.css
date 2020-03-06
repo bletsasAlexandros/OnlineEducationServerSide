@@ -1,3 +1,4 @@
+/*the css for the navigation bar */
 nav {
   display: flex;
   justify-content: space-around;
@@ -6,10 +7,12 @@ nav {
   background-color: #dac292;
 }
 
+/*h3 class a used in navbar*/
 h3.a {
   float: right;
 }
 
+/*drop down button used in lessonSelecti */
 #dropdown-basic-button {
   background-color: #dac292;
   color: black;
@@ -18,18 +21,23 @@ h3.a {
   margin: 10px;
 }
 
+/*used in persononline */
 .container-style {
   margin: 15px;
   border-style: solid;
   transition: 0.2s;
   border-color: #7a653b;
   background-color: #dac292;
+
+  border-radius: 25px;
 }
 
+/*used in persononline */
 .container-style .info {
   margin: 15px;
 }
 
+/*used in persononline */
 .container-style img {
   margin: 8px;
   float: right;
@@ -37,19 +45,24 @@ h3.a {
   border-radius: 50%;
 }
 
+/*used in persononline */
 .container-style:hover {
   transform: scale(1.05);
 }
 
+/*used in persononline */
 ul {
   float: right;
 }
+
+/*used in persononline */
 li {
   color: blue;
   text-decoration: underline;
   list-style-type: none;
 }
 
+/*used in construction page */
 .construction {
   min-height: 100%;
   min-width: 1024px;
@@ -61,6 +74,7 @@ li {
   opacity: 0.5;
 }
 
+/*used in construction page */
 h1.a {
   display: flex;
   flex-direction: column;
@@ -69,6 +83,7 @@ h1.a {
   font-weight: bold;
 }
 
+/*used in homepage for displayig <Online /> for online users*/
 .homepage-style-main {
   position: relative;
   left: 45%;
@@ -76,9 +91,11 @@ h1.a {
   max-width: 100vh;
   min-width: 25vh;
   min-height: 80vh;
-  border: solid;
+
+  border-radius: 25px;
 }
 
+/*used in online js to display all users online */
 .online-container {
   margin-left: 40px;
   margin-right: 40px;
@@ -86,6 +103,7 @@ h1.a {
   margin-bottom: 10px;
 }
 
+/*used in homepage for scroll down*/
 .content {
   max-height: 75vh;
   overflow: auto;
