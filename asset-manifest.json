@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/OnliEdu/static/css/main.5d62ce70.chunk.css",
-    "main.js": "/OnliEdu/static/js/main.9773f91a.chunk.js",
-    "main.js.map": "/OnliEdu/static/js/main.9773f91a.chunk.js.map",
+    "main.js": "/OnliEdu/static/js/main.cf5c16b9.chunk.js",
+    "main.js.map": "/OnliEdu/static/js/main.cf5c16b9.chunk.js.map",
     "runtime-main.js": "/OnliEdu/static/js/runtime-main.bc0136a0.js",
     "runtime-main.js.map": "/OnliEdu/static/js/runtime-main.bc0136a0.js.map",
     "static/css/2.1c98e06a.chunk.css": "/OnliEdu/static/css/2.1c98e06a.chunk.css",
     "static/js/2.47de0985.chunk.js": "/OnliEdu/static/js/2.47de0985.chunk.js",
     "static/js/2.47de0985.chunk.js.map": "/OnliEdu/static/js/2.47de0985.chunk.js.map",
     "index.html": "/OnliEdu/index.html",
-    "precache-manifest.0141d198a773807060b663c43dfc9026.js": "/OnliEdu/precache-manifest.0141d198a773807060b663c43dfc9026.js",
+    "precache-manifest.5da820e2afe401e5ba2fa98b23667fdf.js": "/OnliEdu/precache-manifest.5da820e2afe401e5ba2fa98b23667fdf.js",
     "service-worker.js": "/OnliEdu/service-worker.js",
     "static/css/2.1c98e06a.chunk.css.map": "/OnliEdu/static/css/2.1c98e06a.chunk.css.map",
     "static/css/main.5d62ce70.chunk.css.map": "/OnliEdu/static/css/main.5d62ce70.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.1c98e06a.chunk.css",
     "static/js/2.47de0985.chunk.js",
     "static/css/main.5d62ce70.chunk.css",
-    "static/js/main.9773f91a.chunk.js"
+    "static/js/main.cf5c16b9.chunk.js"
   ]
 }
