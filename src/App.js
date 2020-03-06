@@ -11,9 +11,12 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/OnliEdu" exact component={Login} />
+        <Route path="/OnliEdu/" exact component={Login} />
         <Route path="/OnliEdu/signup" component={SignUp} />
-        <Route path="/OnliEdu/personOnline" component={PersonOnline} />
+        <Route
+          path="/OnliEdu/homepagecomp/personOnline"
+          component={PersonOnline}
+        />
         <Route path="/OnliEdu/homepage" component={HomePage} />
         <Route path="/OnliEdu/signup" component={SignUp} />
         <Route
