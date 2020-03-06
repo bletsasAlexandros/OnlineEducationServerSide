@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1d1cd20e542a723a6f9d83aa35d50da6",
+    "revision": "2e1c5dea9551c514dd91cd3561e143c3",
     "url": "/OnliEdu/index.html"
   },
   {
-    "revision": "e69290b51cf73547eeaa",
+    "revision": "23981c4aa8fededa5ab1",
     "url": "/OnliEdu/static/css/2.1c98e06a.chunk.css"
   },
   {
-    "revision": "3662702c4ff6e2885e45",
-    "url": "/OnliEdu/static/css/main.5d62ce70.chunk.css"
+    "revision": "f7666dab051f6d7a3f5b",
+    "url": "/OnliEdu/static/css/main.8349cf51.chunk.css"
   },
   {
-    "revision": "e69290b51cf73547eeaa",
-    "url": "/OnliEdu/static/js/2.47de0985.chunk.js"
+    "revision": "23981c4aa8fededa5ab1",
+    "url": "/OnliEdu/static/js/2.8401fb5d.chunk.js"
   },
   {
     "revision": "df8be702f0cc9d299c0ff42ca03d3e40",
-    "url": "/OnliEdu/static/js/2.47de0985.chunk.js.LICENSE.txt"
+    "url": "/OnliEdu/static/js/2.8401fb5d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3662702c4ff6e2885e45",
-    "url": "/OnliEdu/static/js/main.cf5c16b9.chunk.js"
+    "revision": "f7666dab051f6d7a3f5b",
+    "url": "/OnliEdu/static/js/main.d102d606.chunk.js"
   },
   {
     "revision": "59aa918c3df8ea866a24",
