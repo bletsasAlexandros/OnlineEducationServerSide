@@ -1,7 +1,6 @@
 import React from "react";
 import "./homepage.css";
 import logo from "./image.png";
-
 import { Link } from "react-router-dom";
 
 class PersonOnline extends React.Component {
@@ -44,8 +43,8 @@ class PersonOnline extends React.Component {
                 <Link to="/OnliEdu/underConstruction">Video Call</Link>
               </li>
               <li>
-                <Link to="/OnliEdu/underConstruction">
-                  <a href="/OnliEdu/underConstruction">Profile</a>
+                <Link to="/OnliEdu/educatorProfile">
+                  <a href="/OnliEdu/educatorProfile">Profile</a>
                 </Link>
               </li>
             </ul>

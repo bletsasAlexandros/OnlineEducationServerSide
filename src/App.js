@@ -6,6 +6,8 @@ import HomePage from "./homepage";
 import PersonOnline from "./homepagecomp/persononline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import underConstruction from "./homepagecomp/underConstruction";
+import studentProfile from "./studentProfile";
+import educatorProfile from "./educatorProfile";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           path="/OnliEdu/underConstruction"
           component={underConstruction}
         />
+        <Route path="/OnliEdu/studentProfile" component={studentProfile} />
+        <Route path="/OnliEdu/educatorProfile" component={educatorProfile} />
       </Switch>
     </Router>
   );
