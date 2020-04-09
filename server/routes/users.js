@@ -1,38 +1,27 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
+const UserSession = require("../models/UserSession");
+const ProfessorReview = require("../models/reviews.model");
 
 const { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
-router.route("/").get((req, res) => {
-  User.find()
+//file uploading packages
+
+router.route("/findonline").get((req, res) => {
+  User.find(
+    { _id: req.query.id, professor: true },
+    "_id lastName firstName email aboutSelf"
+  )
     .then(users => res.json(users))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-// router.route("/add").post((req, res) => {
-//   const firstName = req.body.firstName;
-//   const lastName = req.body.lastName;
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const professor = Boolean(req.body.professor);
-//   const subject = req.body.subject;
-
-//   const newUser = new User({
-//     firstName,
-//     lastName,
-//     password,
-//     email,
-//     professor,
-//     subject
-//   });
-
-//   newUser
-//     .save()
-//     .then(() => res.json("User added!"))
-//     .catch(err => res.status(400).json("Error: " + err));
-// });
+router.route("/auth").get((req, res) => {
+  res.json(req.sessionStore.sessions);
+});
 
 router.route("/signup").post(async (req, res) => {
   const errors = validationResult(req);
@@ -73,71 +62,6 @@ router.route("/signup").post(async (req, res) => {
   }
 });
 
-router.route("/signin").post(async (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array()
-    });
-  }
-
-  const { email, password } = req.body;
-  try {
-    let user = await User.findOne({
-      email
-    });
-    if (!user)
-      return res.status(400).json({
-        message: "User Not Exist"
-      });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
-      return res.status(400).json({
-        message: "Incorrect Password !"
-      });
-
-    const payload = {
-      user: {
-        id: user.id
-      }
-    };
-
-    jwt.sign(
-      payload,
-      "secret",
-      {
-        expiresIn: 3600
-      },
-      (err, token) => {
-        if (err) throw err;
-        res.status(200).json({
-          token
-        });
-      }
-    );
-    return res.json("Welcome " + user.firstName);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      message: "Server Error"
-    });
-  }
-});
-
-router.route("/:id").get((req, res) => {
-  User.findById(req.params.id)
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json("Error: " + err));
-});
-
-router.route("/:id").delete((req, res) => {
-  User.findByIdAndDelete(req.params.id)
-    .then(() => res.json("user deleted."))
-    .catch(err => res.status(400).json("Error: " + err));
-});
-
 router.route("/update/:id").post((req, res) => {
   User.findById(req.params.id)
     .then(user => {
@@ -164,6 +88,88 @@ router.route("/signin/:email").get((req, res) => {
       }
     })
     .catch(err => res.status(400).json("Error: " + err));
+});
+
+//Login Handle
+router.post("/login", passport.authenticate("local"), function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  // Then you can send your json as response.
+  const userSession = new UserSession();
+  userSession.userId = req.user._id;
+  userSession
+    .save()
+    .then(() => {
+      return res.send({
+        token: userSession.userId
+      });
+    })
+    .catch(err => res.return(err));
+});
+
+router.post("/postreview/:review", (req, res) => {
+  const professorReview = new ProfessorReview();
+  professorReview.userId = req.query.id;
+  professorReview.review = req.query.review;
+  professorReview.stars = req.query.stars;
+  professorReview
+    .save()
+    .then(() => {
+      return res.send("Review Added");
+    })
+    .catch(err => res.return(err));
+});
+
+router.get("/delete/:session", (req, res) => {
+  UserSession.findOneAndDelete({
+    userId: req.query.userId
+  }).then(() => {
+    return res.send("deleted");
+  });
+});
+
+router.get("/whichuser/:session", (req, res) => {
+  User.findOne(
+    {
+      _id: req.query.userId
+    },
+    "_id firstName lastName email professor aboutSelf"
+  )
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/online/", (req, res) => {
+  UserSession.find()
+    .select("userId")
+    .then(e => {
+      res.send(e);
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.post("/updateUser/:id", (req, res) => {
+  User.findById(req.query.id)
+    .then(user => {
+      user.firstName = req.query.firstName;
+      user.lastName = req.query.lastName;
+      user.email = req.query.email;
+      user.aboutSelf = req.query.aboutSelf;
+
+      user
+        .save()
+        .then(() => res.json("user updated!"))
+        .catch(err => res.status(400).json("Error :" + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/getreviews/id", (req, res) => {
+  ProfessorReview.find({ userId: req.query.id }).then(review => {
+    res.send(review);
+  });
 });
 
 module.exports = router;
