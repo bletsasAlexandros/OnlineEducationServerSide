@@ -18,19 +18,19 @@ app.use(cors());
 app.use(express.json());
 
 var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "./public/");
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     var filename = file.originalname;
     cb(null, req.query.id + "_" + filename);
-  }
+  },
 });
 
 var upload = multer({ storage: storage }).single("file");
 
 app.post("/upload", (req, res) => {
-  upload(req, res, err => {
+  upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       return res.status(500).json(err);
     } else if (err) {
@@ -45,7 +45,7 @@ app.get("/display/:id", (req, res) => {
   var filess = [];
   var filePath = "./public/"; // Or format the path using the `id` rest param
   fs.readdir(filePath, (err, files) => {
-    files.forEach(file => {
+    files.forEach((file) => {
       var res = file.split("_");
       if (res[0] == id) {
         var file1 = file.replace(res[0] + "_", "");
@@ -67,7 +67,7 @@ app.get("/download/:id", (req, res) => {
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const connection = mongoose.connection;
@@ -79,11 +79,11 @@ app.use(
   session({
     cookie: {
       path: "/",
-      maxAge: 360000
+      maxAge: 360000,
     },
     secret: "secret",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 
@@ -97,22 +97,28 @@ app.use("/users", usersRouter);
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
 
-io.on("connection", socket => {
-  console.log(socket.username);
-  console.log("a user connected");
-  socket.broadcast.emit("Hello, let's chat");
-
+io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User Disconnected");
   });
 
-  socket.on("message", msg => {
-    console.log("message: " + msg);
-    socket.broadcast.emit("message", msg);
+  socket.on("roomMessage", (info) => {
+    console.log(info);
+    socket.broadcast.to(info.room).emit("roomMessage", info);
   });
 
-  socket.broadcast.emit("message", " a user has entered");
+  socket.on("connected", (info) => {
+    console.log("The user " + info.nam + " wants to talk to " + info.name);
+    var person = info.name;
+    socket.broadcast.emit(person, info.nam);
+  });
+
+  socket.on("join", (info) => {
+    socket.join(info.userRoom);
+    console.log(info.nf + " joined room " + info.userRoom);
+  });
 });
+
 server.listen(port, () => {
   console.log("Server listens on port: " + port);
 });

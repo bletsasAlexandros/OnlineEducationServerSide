@@ -13,7 +13,7 @@ const passport = require("passport");
 router.route("/findonline").get((req, res) => {
   User.find(
     { _id: req.query.id, professor: true },
-    "_id lastName firstName email aboutSelf"
+    "_id lastName firstName email aboutSelf subject"
   )
     .then(users => res.json(users))
     .catch(err => res.status(400).json("Error: " + err));
@@ -170,6 +170,29 @@ router.get("/getreviews/id", (req, res) => {
   ProfessorReview.find({ userId: req.query.id }).then(review => {
     res.send(review);
   });
+});
+
+router.get("/starratings/id", (req, res) => {
+  ProfessorReview.find({ userId: req.query.id })
+    .then(review => {
+      var star = [];
+      review.forEach(review => {
+        star.push(review.stars);
+      });
+      var allNumbers = 0;
+      var allReviews = 0;
+      star.forEach(star => {
+        var stringToNumbStar = parseInt(star);
+        allNumbers = stringToNumbStar + allNumbers;
+        allReviews = allReviews + 1;
+      });
+      var average = allNumbers / allReviews;
+      average = Math.round(average);
+      res.json(average);
+    })
+    .catch(err => {
+      res.send(err);
+    });
 });
 
 module.exports = router;
