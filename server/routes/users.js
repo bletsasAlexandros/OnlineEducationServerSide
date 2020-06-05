@@ -15,8 +15,8 @@ router.route("/findonline").get((req, res) => {
     { _id: req.query.id, professor: true },
     "_id lastName firstName email aboutSelf subject"
   )
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json("Error: " + err));
+    .then((users) => res.json(users))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.route("/auth").get((req, res) => {
@@ -27,7 +27,7 @@ router.route("/signup").post(async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({
-      errors: errors.array()
+      errors: errors.array(),
     });
   }
 
@@ -35,11 +35,11 @@ router.route("/signup").post(async (req, res) => {
   const professor = Boolean(req.body.professor);
   try {
     let user = await User.findOne({
-      email
+      email,
     });
     if (user) {
       return res.status(400).json({
-        msg: "User Already Exists"
+        msg: "User Already Exists",
       });
     }
 
@@ -49,7 +49,7 @@ router.route("/signup").post(async (req, res) => {
       email,
       password,
       professor,
-      subject
+      subject,
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -64,7 +64,7 @@ router.route("/signup").post(async (req, res) => {
 
 router.route("/update/:id").post((req, res) => {
   User.findById(req.params.id)
-    .then(user => {
+    .then((user) => {
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
       user.email = req.body.email;
@@ -74,37 +74,39 @@ router.route("/update/:id").post((req, res) => {
       user
         .save()
         .then(() => res.json("user updated!"))
-        .catch(err => res.status(400).json("Error :" + err));
+        .catch((err) => res.status(400).json("Error :" + err));
     })
-    .catch(err => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.route("/signin/:email").get((req, res) => {
   User.findOne({ email: req.params.email })
-    .then(user => {
+    .then((user) => {
       if (user.password === req.body.password) {
         console.log("okey");
         return res.json("authenticated");
       }
     })
-    .catch(err => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 //Login Handle
-router.post("/login", passport.authenticate("local"), function(req, res) {
+router.post("/login", passport.authenticate("local"), function (req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
   // Then you can send your json as response.
   const userSession = new UserSession();
   userSession.userId = req.user._id;
+  userSession.firstName = req.user.firstName;
   userSession
     .save()
     .then(() => {
       return res.send({
-        token: userSession.userId
+        token: userSession.userId,
+        firstName: userSession.firstName,
       });
     })
-    .catch(err => res.return(err));
+    .catch((err) => res.return(err));
 });
 
 router.post("/postreview/:review", (req, res) => {
@@ -117,12 +119,12 @@ router.post("/postreview/:review", (req, res) => {
     .then(() => {
       return res.send("Review Added");
     })
-    .catch(err => res.return(err));
+    .catch((err) => res.return(err));
 });
 
 router.get("/delete/:session", (req, res) => {
   UserSession.findOneAndDelete({
-    userId: req.query.userId
+    userId: req.query.userId,
   }).then(() => {
     return res.send("deleted");
   });
@@ -131,28 +133,28 @@ router.get("/delete/:session", (req, res) => {
 router.get("/whichuser/:session", (req, res) => {
   User.findOne(
     {
-      _id: req.query.userId
+      _id: req.query.userId,
     },
     "_id firstName lastName email professor aboutSelf"
   )
-    .then(user => {
+    .then((user) => {
       res.json(user);
     })
-    .catch(err => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.get("/online/", (req, res) => {
   UserSession.find()
     .select("userId")
-    .then(e => {
+    .then((e) => {
       res.send(e);
     })
-    .catch(err => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.post("/updateUser/:id", (req, res) => {
   User.findById(req.query.id)
-    .then(user => {
+    .then((user) => {
       user.firstName = req.query.firstName;
       user.lastName = req.query.lastName;
       user.email = req.query.email;
@@ -161,27 +163,27 @@ router.post("/updateUser/:id", (req, res) => {
       user
         .save()
         .then(() => res.json("user updated!"))
-        .catch(err => res.status(400).json("Error :" + err));
+        .catch((err) => res.status(400).json("Error :" + err));
     })
-    .catch(err => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.get("/getreviews/id", (req, res) => {
-  ProfessorReview.find({ userId: req.query.id }).then(review => {
+  ProfessorReview.find({ userId: req.query.id }).then((review) => {
     res.send(review);
   });
 });
 
 router.get("/starratings/id", (req, res) => {
   ProfessorReview.find({ userId: req.query.id })
-    .then(review => {
+    .then((review) => {
       var star = [];
-      review.forEach(review => {
+      review.forEach((review) => {
         star.push(review.stars);
       });
       var allNumbers = 0;
       var allReviews = 0;
-      star.forEach(star => {
+      star.forEach((star) => {
         var stringToNumbStar = parseInt(star);
         allNumbers = stringToNumbStar + allNumbers;
         allReviews = allReviews + 1;
@@ -190,7 +192,7 @@ router.get("/starratings/id", (req, res) => {
       average = Math.round(average);
       res.json(average);
     })
-    .catch(err => {
+    .catch((err) => {
       res.send(err);
     });
 });

@@ -6,6 +6,9 @@ var session = require("express-session");
 var multer = require("multer");
 const fs = require("fs");
 
+// Χρησιμοποιούμε το express framework του nodejs
+// Αρχικά, κάνουμε την σύνδεση με την βάση
+
 require("dotenv").config();
 
 const app = express();
@@ -70,11 +73,16 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+}
+
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established succesfully");
 });
 //Express Session
+// Δημιουργούμε το express session
 app.use(
   session({
     cookie: {
@@ -93,15 +101,19 @@ app.use(passport.session());
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
 
+/*
+  Εδώ παραμετροποιούμε το socket io. Αυτό στην ουσία είναι web sockets
+  που μας επιτρέπουν να ανταλλάσουν μηνύματα οι χρήστες.
+  Δημιουργούμε ένα δωμάτιο με τους δύο χρήστες και μιλάνε μέσα σε αυτό.
+  Έχει υλοποιηθεί με τέτοιο τρόπο ώστε να μπορούν και περισσότεροι χρήστες να επικοινωνήσουν για μελλοντική έκδοση της 
+  εφαρμογής.
+*/
+
 // Socket.io
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
 
 io.on("connection", (socket) => {
-  socket.on("disconnect", () => {
-    console.log("User Disconnected");
-  });
-
   socket.on("roomMessage", (info) => {
     console.log(info);
     socket.broadcast.to(info.room).emit("roomMessage", info);
